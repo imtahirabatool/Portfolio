@@ -11,19 +11,24 @@ body {
   color: #ededed;
   background-color: #001a33;
   font-size: 16px;
+  overflow-x: hidden;
 }
 
-/* Header */
 .header {
-  position: relative;
-  width: 100%;
-  padding: 20px 10%;
-  background: transparent;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 100;
-  transition: background-color 0.3s ease;
+  padding: 10px;
+  background: transparent;
+  position: relative;
+} /* Navbar container */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: transparent;
+  position: relative;
 }
 
 .logo {
@@ -31,15 +36,46 @@ body {
   color: #fff;
   text-decoration: none;
   font-weight: 600;
+  z-index: 1;
 }
 
 .navbar {
   display: flex;
-  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: transparent;
+  position: relative;
+}
+
+.navbar-toggle {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: 10px;
+  z-index: 2;
+}
+
+.navbar-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  background: transparent;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  z-index: 1;
 }
 
 .navbar a {
-  font-size: 15px;
+  font-size: 16px;
   color: #fff;
   text-decoration: none;
   font-weight: 400;
@@ -48,7 +84,47 @@ body {
 
 .navbar a:hover {
   color: #0ef;
-  transform: scale(1.1);
+  transform: scale(1.05);
+}
+
+@media (min-width: 768px) {
+  .navbar {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .navbar-toggle {
+    display: none;
+  }
+
+  .navbar-links {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    left: auto;
+    right: 0;
+    top: 50px;
+    width: 100%;
+    max-height: none;
+    overflow: visible;
+    position: static;
+  }
+}
+
+/* Media query for smaller screens */
+@media (max-width: 767px) {
+  .navbar-toggle {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+  }
+  .navbar-links.show {
+    max-height: 500px;
+    overflow: visible;
+    left: -50px; /* Adjust as needed */
+  }
 }
 
 /* Home */
@@ -71,7 +147,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  overflow-x: hidden;
   max-width: 1200px;
 }
 
@@ -179,6 +255,7 @@ body {
   background-color: #0ef;
   text-decoration: none;
   border-radius: 5px;
+  margin-top:15px;
   border: 2px solid #0ef;
   transition: background-color 0.3s ease, color 0.3s ease,
     border-color 0.3s ease;
@@ -485,6 +562,9 @@ body {
   .about-content {
     flex-direction: column;
     align-items: center;
+  }
+  .about-text{
+    text-align: left;
   }
   .About {
     margin-bottom: 30px;
